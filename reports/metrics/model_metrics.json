@@ -1,0 +1,256 @@
+{
+  "model_version": "gbt-v1",
+  "training_date_utc": "2026-10-07T04:02:31+00:00",
+  "target": "duration_min = (dropoff - pickup) in minutes",
+  "random_seed": 42,
+  "sample_counts": {
+    "raw_rows": 6433,
+    "after_cleaning": 6427,
+    "train": 4498,
+    "validation": 964,
+    "test": 965,
+    "final_fit_train_plus_validation": 5462
+  },
+  "split": {
+    "method": "chronological by pickup time (70/15/15)",
+    "train_pickup_range": [
+      "2019-02-28 23:29:03",
+      "2019-03-22 07:54:09"
+    ],
+    "validation_pickup_range": [
+      "2019-03-22 07:57:20",
+      "2019-03-27 12:38:06"
+    ],
+    "test_pickup_range": [
+      "2019-03-27 12:40:00",
+      "2019-03-31 23:43:45"
+    ]
+  },
+  "cleaning": {
+    "n_input": 6433,
+    "excluded_duplicates": 0,
+    "excluded_invalid_duration": 6,
+    "excluded_passengers_out_of_range": 0,
+    "n_clean": 6427
+  },
+  "model_params": {
+    "chosen_by_search": {
+      "learning_rate": 0.1,
+      "max_iter": 200,
+      "max_leaf_nodes": 16,
+      "min_samples_leaf": 20,
+      "l2_regularization": 10.0,
+      "loss": "squared_error",
+      "use_route_stats": false
+    },
+    "full_estimator_params": {
+      "categorical_features": "from_dtype",
+      "early_stopping": false,
+      "interaction_cst": null,
+      "l2_regularization": 10.0,
+      "learning_rate": 0.1,
+      "loss": "squared_error",
+      "max_bins": 255,
+      "max_depth": null,
+      "max_features": 1.0,
+      "max_iter": 200,
+      "max_leaf_nodes": 16,
+      "min_samples_leaf": 20,
+      "monotonic_cst": null,
+      "n_iter_no_change": 10,
+      "quantile": null,
+      "random_state": 42,
+      "scoring": "loss",
+      "tol": 1e-07,
+      "validation_fraction": 0.1,
+      "verbose": 0,
+      "warm_start": false
+    }
+  },
+  "tuning": {
+    "method": "random search, 30 configs, TimeSeriesSplit(4) on the training split, scored by MAE",
+    "search_space": {
+      "learning_rate": [
+        0.02,
+        0.04,
+        0.07,
+        0.1,
+        0.15
+      ],
+      "max_iter": [
+        100,
+        200,
+        400
+      ],
+      "max_leaf_nodes": [
+        4,
+        8,
+        16,
+        31
+      ],
+      "min_samples_leaf": [
+        10,
+        20,
+        40,
+        80
+      ],
+      "l2_regularization": [
+        0.0,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "loss": [
+        "squared_error",
+        "absolute_error"
+      ],
+      "use_route_stats": [
+        true,
+        false
+      ]
+    },
+    "best_cv_mae_mean": 6.143741944975444,
+    "best_cv_mae_std": 0.7351400642873811,
+    "full_log": "reports/metrics/tuning_results.csv"
+  },
+  "metric_protocol": "validation = fit on train, score on validation; test = refit on train+validation with the chosen params, score on the untouched chronologically-last test split",
+  "results": {
+    "baseline_median": {
+      "validation_fit_on_train": {
+        "mae": 7.425950899031812,
+        "rmse": 11.079497472118055,
+        "r2": -0.05921685084410755,
+        "median_ae": 5.083333333333334,
+        "n": 964
+      },
+      "test_fit_on_train_plus_val": {
+        "mae": 7.5529620034542315,
+        "rmse": 11.516965274479368,
+        "r2": -0.07734964102878905,
+        "median_ae": 5.308333333333334,
+        "n": 965
+      }
+    },
+    "baseline_ridge_time_borough_color": {
+      "validation_fit_on_train": {
+        "mae": 7.3158953626740795,
+        "rmse": 9.973980885612708,
+        "r2": 0.14161559476018115,
+        "median_ae": 5.543725069780837,
+        "n": 964
+      },
+      "test_fit_on_train_plus_val": {
+        "mae": 7.505709144354695,
+        "rmse": 10.23589770721626,
+        "r2": 0.14899437491465994,
+        "median_ae": 5.9926613263728585,
+        "n": 965
+      }
+    },
+    "gradient_boosted_trees": {
+      "validation_fit_on_train": {
+        "mae": 4.780319719800198,
+        "rmse": 7.1278178974837205,
+        "r2": 0.5616127171082183,
+        "median_ae": 3.339435461038814,
+        "n": 964
+      },
+      "test_fit_on_train_plus_val": {
+        "mae": 4.796596701747256,
+        "rmse": 7.134115837928318,
+        "r2": 0.5866091401130544,
+        "median_ae": 3.2735929003898327,
+        "n": 965
+      }
+    },
+    "ref_gbt_route_stats_on_ablation": {
+      "validation_fit_on_train": {
+        "mae": 4.816110934857341,
+        "rmse": 7.15404354849419,
+        "r2": 0.5583808324799665,
+        "median_ae": 3.1350118309928487,
+        "n": 964
+      },
+      "test_fit_on_train_plus_val": {
+        "mae": 4.837942273150139,
+        "rmse": 7.092135037131799,
+        "r2": 0.591460033594273,
+        "median_ae": 3.3243771876331323,
+        "n": 965
+      }
+    },
+    "ref_gbt_WITH_metered_distance_LEAKY_not_available_at_prediction_time": {
+      "validation_fit_on_train": {
+        "mae": 3.0598922027094955,
+        "rmse": 4.518062092447709,
+        "r2": 0.8238635876304343,
+        "median_ae": 1.9917376296659128,
+        "n": 964
+      },
+      "test_fit_on_train_plus_val": {
+        "mae": 2.901059100833508,
+        "rmse": 4.373845404844884,
+        "r2": 0.8446156004457066,
+        "median_ae": 1.9005870484569085,
+        "n": 965
+      }
+    }
+  },
+  "feature_docs": [
+    {
+      "feature": "hour, hour_sin, hour_cos",
+      "source": "pickup",
+      "formula": "hour = h + min/60; sin/cos(2*pi*hour/24)",
+      "reason": "traffic varies by time of day; cyclical encoding makes 23:59 close to 00:00",
+      "leakage_risk": "none: pickup time is known at request time"
+    },
+    {
+      "feature": "dayofweek, dow_sin, dow_cos, is_weekend",
+      "source": "pickup",
+      "formula": "dayofweek in 0..6; sin/cos(2*pi*d/7); is_weekend = dayofweek >= 5",
+      "reason": "weekday/weekend traffic patterns",
+      "leakage_risk": "none"
+    },
+    {
+      "feature": "passengers",
+      "source": "passengers",
+      "formula": "as reported (driver-entered count)",
+      "reason": "available when the trip starts; weak expected signal",
+      "leakage_risk": "low: believed to be entered by the driver at pickup (Not verified here)"
+    },
+    {
+      "feature": "pickup_zone, dropoff_zone",
+      "source": "pickup_zone, dropoff_zone",
+      "formula": "native categorical (missing stays missing)",
+      "reason": "the only spatial information allowed (distance is leaky)",
+      "leakage_risk": "dropoff zone must be known up front (a destination is required for an ETA)"
+    },
+    {
+      "feature": "pickup_borough, dropoff_borough",
+      "source": "pickup_zone, dropoff_zone",
+      "formula": "zone->borough lookup learned from the training data",
+      "reason": "coarser spatial grouping with more samples per level",
+      "leakage_risk": "none"
+    },
+    {
+      "feature": "color",
+      "source": "color",
+      "formula": "yellow | green categorical",
+      "reason": "taxi type serves different areas",
+      "leakage_risk": "none"
+    },
+    {
+      "feature": "pu_te, do_te, route_te",
+      "source": "pickup_zone, dropoff_zone + training target",
+      "formula": "smoothed mean duration per pickup zone / dropoff zone / zone pair: (sum_y + m*prior)/(n + m), m=smoothing, prior = global mean (zone) or mean(pu_te, do_te) (route)",
+      "reason": "historical route statistics, robust to sparse zone pairs via shrinkage",
+      "leakage_risk": "target encoding leaks if a row sees its own target: training rows use out-of-fold statistics; stats are fitted on training data only"
+    }
+  ],
+  "environment": {
+    "python": "3.13.16",
+    "scikit_learn": "1.9.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6"
+  }
+}

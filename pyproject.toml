@@ -1,0 +1,32 @@
+[project]
+name = "bharat-delivery-eta"
+version = "1.0.0"
+description = "Gradient-boosted-tree trip-duration (ETA) regression on NYC TLC taxi trip records"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore:Could not infer format:UserWarning",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [".venv", "notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/build_eda_notebook.py" = ["E501"]  # long lines are notebook cell source
+"scripts/update_readme.py" = ["E501"]  # long lines are report text templates
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+check_untyped_defs = true
+files = ["src", "app", "scripts"]

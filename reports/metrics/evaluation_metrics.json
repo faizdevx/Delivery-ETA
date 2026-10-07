@@ -1,0 +1,447 @@
+{
+  "split": "test (chronologically last 15%)",
+  "metrics": {
+    "baseline_median": {
+      "mae": 7.5529620034542315,
+      "rmse": 11.516965274479368,
+      "r2": -0.07734964102878905,
+      "median_ae": 5.308333333333334,
+      "n": 965,
+      "mae_95ci_bootstrap": [
+        7.0140919689119166,
+        8.131587219343697
+      ]
+    },
+    "baseline_ridge_time_borough_color": {
+      "mae": 7.505709144354695,
+      "rmse": 10.23589770721626,
+      "r2": 0.14899437491465994,
+      "median_ae": 5.9926613263728585,
+      "n": 965,
+      "mae_95ci_bootstrap": [
+        7.06727179944867,
+        7.976152398338519
+      ]
+    },
+    "gradient_boosted_trees": {
+      "mae": 4.796596701747256,
+      "rmse": 7.134115837928318,
+      "r2": 0.5866091401130544,
+      "median_ae": 3.2735929003898327,
+      "n": 965,
+      "mae_95ci_bootstrap": [
+        4.442713746029945,
+        5.12928049886898
+      ]
+    }
+  },
+  "improvement_vs_median_baseline": {
+    "mae_reduction_vs_median_baseline": 2.7563653017069756,
+    "paired_bootstrap_95ci": [
+      2.3489135046637464,
+      3.2025545710860652
+    ]
+  },
+  "reproducibility_check": {
+    "train_time_test_mae": 4.796596701747256,
+    "reevaluated_test_mae": 4.796596701747256,
+    "match": true
+  },
+  "permutation_importance": [
+    {
+      "feature": "dropoff_zone",
+      "mae_increase": 5.6591872645,
+      "std": 0.1299620048
+    },
+    {
+      "feature": "pickup_zone",
+      "mae_increase": 5.5018108969,
+      "std": 0.1654331317
+    },
+    {
+      "feature": "pickup",
+      "mae_increase": 0.7402240288,
+      "std": 0.0707819601
+    },
+    {
+      "feature": "color",
+      "mae_increase": 0.0367428117,
+      "std": 0.0113402232
+    },
+    {
+      "feature": "passengers",
+      "mae_increase": 0.0042037457,
+      "std": 0.0039459638
+    }
+  ],
+  "error_analysis": {
+    "n_test": 965,
+    "mean_signed_error": 0.1826150106350406,
+    "n_overpredicted": 541,
+    "n_underpredicted": 424,
+    "abs_error_percentiles": {
+      "50": 3.2735929003898327,
+      "75": 5.897044014150935,
+      "90": 10.653748875170905,
+      "95": 15.109918044401413,
+      "99": 28.581646022588263
+    },
+    "high_error_threshold_p95_minutes": 15.109918044401413,
+    "high_error_records": {
+      "n": 49,
+      "share_underpredicted": 0.5918367346938775,
+      "mean_actual_duration": 32.94421768707483,
+      "overall_mean_actual_duration": 13.994283246977547,
+      "median_distance_miles": 4.88,
+      "overall_median_distance_miles": 1.6,
+      "n_missing_zone": 3,
+      "share_missing_zone": 0.061224489795918366,
+      "overall_share_missing_zone": 0.010362694300518135
+    },
+    "worst_20_note": "see reports/metrics/worst_predictions.csv; 'distance' is shown for diagnosis only and is NOT a model input",
+    "by_group": {
+      "hour_bucket": [
+        {
+          "hour_bucket": "00-05",
+          "n": 101,
+          "mae": 3.6935952192,
+          "mean_signed_error": 1.3084002335,
+          "mean_actual": 10.104950495
+        },
+        {
+          "hour_bucket": "06-09",
+          "n": 106,
+          "mae": 4.45143831,
+          "mean_signed_error": 1.1533173666,
+          "mean_actual": 13.8550314465
+        },
+        {
+          "hour_bucket": "10-15",
+          "n": 303,
+          "mae": 5.1507757722,
+          "mean_signed_error": 0.2723476511,
+          "mean_actual": 14.6892189219
+        },
+        {
+          "hour_bucket": "16-19",
+          "n": 224,
+          "mae": 5.3498170812,
+          "mean_signed_error": 0.3699430566,
+          "mean_actual": 14.9994047619
+        },
+        {
+          "hour_bucket": "20-23",
+          "n": 231,
+          "mae": 4.4362171171,
+          "mean_signed_error": -1.0543946413,
+          "mean_actual": 13.8725108225
+        }
+      ],
+      "weekend": [
+        {
+          "weekend": "weekday",
+          "n": 563,
+          "mae": 5.0854673293,
+          "mean_signed_error": 0.3426464573,
+          "mean_actual": 14.6547365305
+        },
+        {
+          "weekend": "weekend",
+          "n": 402,
+          "mae": 4.3920341064,
+          "mean_signed_error": -0.0415086324,
+          "mean_actual": 13.0693200663
+        }
+      ],
+      "color": [
+        {
+          "color": "green",
+          "n": 151,
+          "mae": 6.4436570568,
+          "mean_signed_error": 1.2562511663,
+          "mean_actual": 13.6682119205
+        },
+        {
+          "color": "yellow",
+          "n": 814,
+          "mae": 4.4910609356,
+          "mean_signed_error": -0.0165484531,
+          "mean_actual": 14.0547706798
+        }
+      ],
+      "borough_pair": [
+        {
+          "borough_pair": "? -> ?",
+          "n": 5,
+          "mae": 4.652247402,
+          "mean_signed_error": -0.134928991,
+          "mean_actual": 5.1366666667
+        },
+        {
+          "borough_pair": "Bronx -> Bronx",
+          "n": 7,
+          "mae": 14.6877343568,
+          "mean_signed_error": 3.5150004055,
+          "mean_actual": 17.0333333333
+        },
+        {
+          "borough_pair": "Bronx -> Brooklyn",
+          "n": 1,
+          "mae": 4.0253120801,
+          "mean_signed_error": -4.0253120801,
+          "mean_actual": 30.8833333333
+        },
+        {
+          "borough_pair": "Bronx -> Manhattan",
+          "n": 3,
+          "mae": 3.934150735,
+          "mean_signed_error": -1.4701049682,
+          "mean_actual": 36.8333333333
+        },
+        {
+          "borough_pair": "Brooklyn -> ?",
+          "n": 1,
+          "mae": 21.892959512,
+          "mean_signed_error": 21.892959512,
+          "mean_actual": 0.1333333333
+        },
+        {
+          "borough_pair": "Brooklyn -> Brooklyn",
+          "n": 33,
+          "mae": 7.5892233951,
+          "mean_signed_error": 1.9034710449,
+          "mean_actual": 14.4136363636
+        },
+        {
+          "borough_pair": "Brooklyn -> Manhattan",
+          "n": 16,
+          "mae": 9.9020597562,
+          "mean_signed_error": -1.3339351176,
+          "mean_actual": 26.3625
+        },
+        {
+          "borough_pair": "Brooklyn -> Queens",
+          "n": 3,
+          "mae": 13.189736188,
+          "mean_signed_error": -10.2443997179,
+          "mean_actual": 40.05
+        },
+        {
+          "borough_pair": "Manhattan -> ?",
+          "n": 2,
+          "mae": 16.8201537559,
+          "mean_signed_error": 16.8201537559,
+          "mean_actual": 14.5583333333
+        },
+        {
+          "borough_pair": "Manhattan -> Bronx",
+          "n": 4,
+          "mae": 13.321217171,
+          "mean_signed_error": 5.7892808018,
+          "mean_actual": 16.0
+        },
+        {
+          "borough_pair": "Manhattan -> Brooklyn",
+          "n": 25,
+          "mae": 7.5425289987,
+          "mean_signed_error": -3.8016046542,
+          "mean_actual": 30.7066666667
+        },
+        {
+          "borough_pair": "Manhattan -> Manhattan",
+          "n": 746,
+          "mae": 3.7468381926,
+          "mean_signed_error": 0.2319343835,
+          "mean_actual": 11.5899240393
+        },
+        {
+          "borough_pair": "Manhattan -> Queens",
+          "n": 18,
+          "mae": 8.980399027,
+          "mean_signed_error": 0.2233567777,
+          "mean_actual": 32.3537037037
+        },
+        {
+          "borough_pair": "Manhattan -> Staten Island",
+          "n": 1,
+          "mae": 5.9180044034,
+          "mean_signed_error": -5.9180044034,
+          "mean_actual": 32.2
+        },
+        {
+          "borough_pair": "Queens -> ?",
+          "n": 2,
+          "mae": 16.5573087613,
+          "mean_signed_error": 16.5573087613,
+          "mean_actual": 12.425
+        },
+        {
+          "borough_pair": "Queens -> Bronx",
+          "n": 3,
+          "mae": 25.513036213,
+          "mean_signed_error": -25.513036213,
+          "mean_actual": 50.6833333333
+        },
+        {
+          "borough_pair": "Queens -> Brooklyn",
+          "n": 10,
+          "mae": 11.9669200182,
+          "mean_signed_error": -0.6349500994,
+          "mean_actual": 32.965
+        },
+        {
+          "borough_pair": "Queens -> Manhattan",
+          "n": 28,
+          "mae": 8.6334571318,
+          "mean_signed_error": 0.2027510854,
+          "mean_actual": 33.0232142857
+        },
+        {
+          "borough_pair": "Queens -> Queens",
+          "n": 57,
+          "mae": 5.389799533,
+          "mean_signed_error": 0.6896770369,
+          "mean_actual": 11.3652046784
+        }
+      ],
+      "passengers": [
+        {
+          "passengers": 0,
+          "n": 14,
+          "mae": 4.777528137,
+          "mean_signed_error": -1.8488463757,
+          "mean_actual": 19.1011904762
+        },
+        {
+          "passengers": 1,
+          "n": 676,
+          "mae": 4.8002261531,
+          "mean_signed_error": 0.3877426469,
+          "mean_actual": 13.8333086785
+        },
+        {
+          "passengers": 2,
+          "n": 148,
+          "mae": 4.1035983669,
+          "mean_signed_error": 0.1158510267,
+          "mean_actual": 13.292454955
+        },
+        {
+          "passengers": 3,
+          "n": 43,
+          "mae": 5.6726069629,
+          "mean_signed_error": -0.879777753,
+          "mean_actual": 15.0065891473
+        },
+        {
+          "passengers": 4,
+          "n": 15,
+          "mae": 4.1229278044,
+          "mean_signed_error": -1.6857695205,
+          "mean_actual": 15.7944444444
+        },
+        {
+          "passengers": 5,
+          "n": 40,
+          "mae": 5.8147081701,
+          "mean_signed_error": -0.1752997287,
+          "mean_actual": 15.7404166667
+        },
+        {
+          "passengers": 6,
+          "n": 29,
+          "mae": 5.9031255919,
+          "mean_signed_error": -0.242195565,
+          "mean_actual": 14.0224137931
+        }
+      ],
+      "actual_bin": [
+        {
+          "actual_bin": "<=5",
+          "n": 145,
+          "mae": 4.7790711637,
+          "mean_signed_error": 4.6416840302,
+          "mean_actual": 3.3040229885
+        },
+        {
+          "actual_bin": "5-10",
+          "n": 292,
+          "mae": 3.2928692605,
+          "mean_signed_error": 2.5520380083,
+          "mean_actual": 7.3794520548
+        },
+        {
+          "actual_bin": "10-20",
+          "n": 332,
+          "mae": 3.5733477865,
+          "mean_signed_error": 0.4063934826,
+          "mean_actual": 14.2742971888
+        },
+        {
+          "actual_bin": "20-40",
+          "n": 162,
+          "mae": 7.2442295944,
+          "mean_signed_error": -4.8967387684,
+          "mean_actual": 26.7690329218
+        },
+        {
+          "actual_bin": ">40",
+          "n": 34,
+          "mae": 18.068118088,
+          "mean_signed_error": -17.1666692141,
+          "mean_actual": 52.7926470588
+        }
+      ],
+      "dist_bin": [
+        {
+          "dist_bin": "<=1mi",
+          "n": 262,
+          "mae": 4.1482700458,
+          "mean_signed_error": 3.4596808494,
+          "mean_actual": 5.4165394402
+        },
+        {
+          "dist_bin": "1-2",
+          "n": 303,
+          "mae": 3.1777305747,
+          "mean_signed_error": 1.1395621481,
+          "mean_actual": 9.8948294829
+        },
+        {
+          "dist_bin": "2-4",
+          "n": 223,
+          "mae": 4.7544617677,
+          "mean_signed_error": -1.0895096478,
+          "mean_actual": 17.0395366218
+        },
+        {
+          "dist_bin": "4-8",
+          "n": 99,
+          "mae": 6.6294499432,
+          "mean_signed_error": -3.1049053857,
+          "mean_actual": 23.5900673401
+        },
+        {
+          "dist_bin": ">8",
+          "n": 78,
+          "mae": 11.0571305447,
+          "mean_signed_error": -6.7327428657,
+          "mean_actual": 37.8459401709
+        }
+      ]
+    },
+    "worst_20_implied_speed_mph": {
+      "median": 13.27311599908333,
+      "min": 0.0,
+      "max": 30.954689146469967,
+      "overall_median": 9.954983922829582
+    }
+  },
+  "figures": [
+    "reports/figures/actual_vs_predicted.png",
+    "reports/figures/residual_distribution.png",
+    "reports/figures/mae_by_group.png",
+    "reports/figures/permutation_importance.png",
+    "reports/figures/bias_by_duration.png"
+  ]
+}
