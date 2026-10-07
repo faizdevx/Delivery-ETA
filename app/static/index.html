@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bharat Delivery ETA</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main>
+  <h1>Bharat Delivery ETA</h1>
+  <p class="sub">Predicts NYC taxi trip duration (minutes) from pickup time, zones, passengers and taxi color.
+     Trained on one month of 2019 trips &mdash; see the limitations in the README.</p>
+  <form id="form" novalidate>
+    <label>Pickup time (New York local)
+      <input type="datetime-local" id="pickup_datetime" required></label>
+    <label>Pickup zone
+      <select id="pickup_zone" required></select></label>
+    <label>Dropoff zone
+      <select id="dropoff_zone" required></select></label>
+    <div class="row">
+      <label>Passengers
+        <input type="number" id="passengers" min="0" max="6" step="1" value="1" required></label>
+      <label>Taxi color
+        <select id="taxi_color"></select></label>
+    </div>
+    <button type="submit" id="go">Predict</button>
+  </form>
+  <div id="result" role="status" aria-live="polite" hidden></div>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>
