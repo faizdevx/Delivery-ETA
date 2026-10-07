@@ -4,6 +4,20 @@
 
 Gradient-boosted-tree regression of **trip duration in minutes**, with chronological evaluation, baselines, hyperparameter tuning, error analysis, a FastAPI service, and a small web UI.
 
+<p align-"center">
+
+![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-API-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Pydantic](https://img.shields.io/badge/Pydantic-Validation-E92063?style=for-the-badge&logo=pydantic&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Pytest](https://img.shields.io/badge/Pytest-Testing-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)
+![Ruff](https://img.shields.io/badge/Ruff-Linting-D7FF64?style=for-the-badge&logo=ruff&logoColor=black)
+![MyPy](https://img.shields.io/badge/MyPy-Type_Checking-2A6DB2?style=for-the-badge&logo=mypy&logoColor=white)
+![Make](https://img.shields.io/badge/Make-Automation-427819?style=for-the-badge&logo=gnu&logoColor=white)
+</p>
+
 <p align="center">
   <strong>4.80 min MAE</strong> ·
   <strong>7.13 min RMSE</strong> ·
