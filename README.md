@@ -42,6 +42,13 @@ Gradient-boosted-tree regression of **trip duration in minutes**, with chronolog
 | **Serving** | FastAPI + web UI |
 | **Python** | Tested on 3.13.16 |
 
+
+
+
+![prediction#1](1.png)
+![prediction#1](2.png)
+
+
 ---
 
 ## Honest Scope
